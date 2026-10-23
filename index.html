@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bernard Frimpong</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bernard Frimpong, data analyst. Credit analytics, survival analysis, disease forecasting and machine learning projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with a left "axis" of section labels, like a plot's y-axis; results set in mono like model output. */
+:root{
+  --bg:#f5f7f6; --surface:#ffffff; --ink:#15212b; --muted:#56646e; --line:#d6dedc;
+  --accent:#0f6b63; --accent-soft:#dcefeb; --mark:#b5651d;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171c; --surface:#16222a; --ink:#e6eeec; --muted:#9aaab0; --line:#283841;
+  --accent:#4cc2b2; --accent-soft:#173a37; --mark:#e0a060; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171c; --surface:#16222a; --ink:#e6eeec; --muted:#9aaab0; --line:#283841;
+  --accent:#4cc2b2; --accent-soft:#173a37; --mark:#e0a060; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--body);margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrap{max-width:66rem;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+
+/* nav */
+header.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
+.brand{font:700 1rem var(--display);color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+nav ul{display:flex;gap:1.1rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.88rem}
+nav a:hover{color:var(--accent)}
+@media (max-width:640px){nav ul{gap:.8rem} nav li.opt{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:2.5rem;align-items:center;padding-block:4rem 3rem}
+.eyebrow{font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 .8rem}
+h1{font:700 clamp(2.4rem,6vw,4rem)/1.02 var(--display);letter-spacing:-.03em;margin:0 0 1.1rem;text-wrap:balance}
+.lede{font-size:1.12rem;color:var(--muted);max-width:36rem;margin:0 0 1.6rem}
+.lede strong{color:var(--ink);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem}
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.62rem 1.05rem;border-radius:6px;font:600 .92rem var(--body);text-decoration:none;border:1px solid var(--accent);cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.km{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1rem 1rem .6rem}
+.km svg{width:100%;height:auto;display:block}
+.km figcaption{font:400 .74rem/1.4 var(--mono);color:var(--muted);margin-top:.4rem}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-block:2.5rem 2rem;gap:1.8rem}}
+
+/* figures strip */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:1.1rem 1rem 1.1rem 0;min-width:0}
+.stat+.stat{padding-left:1rem;border-left:1px solid var(--line)}
+.stat b{display:block;font:500 1.55rem/1.1 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.stat span{font-size:.82rem;color:var(--muted)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* sections */
+section.block{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:2rem;padding-block:3.2rem;border-bottom:1px solid var(--line)}
+section.block>h2{font:500 .78rem/1.4 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:.35rem 0 0;position:sticky;top:4.2rem;align-self:start}
+@media (max-width:760px){section.block{grid-template-columns:1fr;gap:1rem;padding-block:2.4rem}section.block>h2{position:static}}
+
+.about p{max-width:40rem;margin:0 0 1rem}
+
+/* projects */
+.projects{display:grid;gap:1.25rem}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.5rem;display:grid;gap:.7rem;min-width:0}
+.proj-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;align-items:baseline}
+.proj h3{font:700 1.3rem/1.2 var(--display);letter-spacing:-.015em;margin:0;text-wrap:balance}
+.when{font:400 .78rem var(--mono);color:var(--muted)}
+.live{color:var(--mark);font-weight:500}
+.result{font:500 .86rem/1.5 var(--mono);color:var(--accent);background:var(--accent-soft);padding:.45rem .7rem;border-radius:5px;overflow-wrap:anywhere}
+.proj p{margin:0;color:var(--ink)}
+.proj ul{margin:0;padding-left:1.1rem;color:var(--muted)}
+.proj li{margin:.2rem 0}
+.proj-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 1rem;align-items:center;padding-top:.3rem}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;list-style:none;margin:0;padding:0}
+.tags li{font:400 .74rem var(--mono);color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:.1rem .45rem}
+.repo{font:500 .85rem var(--body);white-space:nowrap}
+
+/* research + experience */
+.rows{display:grid;gap:1.6rem}
+.row h3{font:700 1.08rem/1.3 var(--display);margin:0 0 .2rem}
+.row .meta{font:400 .8rem var(--mono);color:var(--muted);margin:0 0 .4rem}
+.row p{margin:0;max-width:42rem}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem 2rem}
+.skills h3{font:600 .95rem var(--body);margin:0 0 .3rem}
+.skills p{margin:0;color:var(--muted);font-size:.93rem}
+@media (max-width:640px){.skills{grid-template-columns:1fr}}
+
+/* contact */
+.contact p{max-width:38rem;margin:0 0 1.2rem}
+.email-row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.2rem}
+.email{font:500 1rem var(--mono);user-select:all;background:var(--surface);border:1px solid var(--line);padding:.5rem .8rem;border-radius:6px;overflow-wrap:anywhere}
+.links{display:flex;flex-wrap:wrap;gap:1.2rem;list-style:none;padding:0;margin:0}
+footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
+@media (prefers-reduced-motion:no-preference){.km path.curve{stroke-dasharray:900;stroke-dashoffset:0;animation:draw 1.6s ease-out}@keyframes draw{from{stroke-dashoffset:900}}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Bernard Frimpong</a>
+    <nav aria-label="Sections"><ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li class="opt"><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Data Analyst · Akron, Ohio</p>
+        <h1>I turn messy data into results you can check.</h1>
+        <p class="lede">Applied mathematician working in <strong>credit analytics</strong>, <strong>survival analysis</strong> and <strong>disease forecasting</strong>. Every project here is reproducible on GitHub, validated honestly, and written up in plain language.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">See the projects</a>
+          <a class="btn ghost" href="Bernard_Frimpong_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        </div>
+      </div>
+      <figure class="km" aria-label="Illustrative Kaplan–Meier survival curves for three risk groups">
+        <svg viewBox="0 0 320 200" role="img">
+          <g stroke="var(--line)" stroke-width="1">
+            <line x1="34" y1="20" x2="34" y2="170"/><line x1="34" y1="170" x2="310" y2="170"/>
+            <line x1="34" y1="95" x2="310" y2="95" stroke-dasharray="2 4"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="var(--muted)">
+            <text x="28" y="23" text-anchor="end">1.0</text>
+            <text x="28" y="98" text-anchor="end">0.5</text>
+            <text x="28" y="173" text-anchor="end">0</text>
+            <text x="310" y="186" text-anchor="end">time (years)</text>
+            <text x="38" y="186">0</text>
+          </g>
+          <path class="curve" fill="none" stroke="var(--accent)" stroke-width="2" d="M34 20 H70 V26 H105 V31 H140 V38 H180 V42 H215 V47 H260 V50 H310"/>
+          <path class="curve" fill="none" stroke="var(--mark)" stroke-width="2" d="M34 20 H55 V34 H82 V47 H110 V60 H138 V74 H170 V86 H205 V95 H245 V103 H310"/>
+          <path class="curve" fill="none" stroke="var(--muted)" stroke-width="2" d="M34 20 H46 V44 H64 V68 H86 V92 H108 V112 H134 V128 H170 V139 H220 V146 H310"/>
+          <g font-family="JetBrains Mono, monospace" font-size="9">
+            <text x="264" y="45" fill="var(--accent)">low</text>
+            <text x="252" y="98" fill="var(--mark)">mid</text>
+            <text x="252" y="141" fill="var(--muted)">high</text>
+          </g>
+        </svg>
+        <figcaption>Survival by risk group, the kind of curve behind my leukemia model (illustrative).</figcaption>
+      </figure>
+    </div>
+
+    <div class="stats" aria-label="Highlights">
+      <div class="stat"><b>882,533</b><span>SBA loans analyzed</span></div>
+      <div class="stat"><b>0.754</b><span>IPCW C-index, unseen hospital</span></div>
+      <div class="stat"><b>Weekly</b><span>CDC FluSight submissions</span></div>
+      <div class="stat"><b>0.96056</b><span>Kaggle ROC AUC</span></div>
+    </div>
+
+    <section class="block about" id="about">
+      <h2>About</h2>
+      <div>
+        <p>I hold an M.S. in Applied Mathematics from the University of Akron and a B.S. in Mathematics from KNUST in Ghana. My training is in modeling, numerical methods and statistics, and I now apply it to business and health data.</p>
+        <p>I care most about validation that holds up: grouped cross-validation, leakage checks, and scores on data the model has never seen. Three years of university teaching taught me to explain those results so a non-specialist can act on them.</p>
+      </div>
+    </section>
+
+    <section class="block" id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+
+        <article class="proj">
+          <div class="proj-head"><h3>Commercial Credit Portfolio Analysis</h3><span class="when">2026</span></div>
+          <div class="result">loans approved 2005–08 → 21% of dollars, 54% of losses</div>
+          <p>A bank-style review of 882,533 SBA small-business loans ($170B approved), built in SQL and Python and delivered as an Excel limit monitor, a Power BI dashboard and an executive summary.</p>
+          <ul>
+            <li>An early warning indicator from 2-year default rates flagged the 2010 loss peak three years ahead, two years before the unemployment rate did.</li>
+            <li>The Excel limit monitor found three concentration breaches; lender rankings were corrected with an actual-vs-expected benchmark.</li>
+          </ul>
+          <div class="proj-foot">
+            <ul class="tags"><li>SQL</li><li>Python</li><li>Power BI</li><li>Excel</li></ul>
+            <a class="repo" href="https://github.com/bernardfrimpong040-pixel/credit-portfolio-analysis" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head"><h3>Leukemia Overall Survival Prediction</h3><span class="when">Oct 2026</span></div>
+          <div class="result">IPCW C-index 0.754 on an unseen hospital · clinical score IPSS-R 0.671</div>
+          <p>QRT × Institut Gustave Roussy challenge (Challenge Data, ENS Paris): predicting survival of myeloid leukemia patients from blood counts, karyotype text and gene mutations.</p>
+          <ul>
+            <li>91 engineered features, including a parser for free-text karyotypes; penalized Cox, random survival forest and XGBoost-Cox models.</li>
+            <li>Centre-grouped nested cross-validation: the ensemble scored 0.725 ± 0.021 and beat the best single model on 15 of 15 folds.</li>
+            <li>Kaplan–Meier and the IPCW C-index derived by hand and matched to library output; 33-page LaTeX write-up.</li>
+          </ul>
+          <div class="proj-foot">
+            <ul class="tags"><li>lifelines</li><li>scikit-survival</li><li>XGBoost</li><li>LaTeX</li></ul>
+            <a class="repo" href="https://github.com/bernardfrimpong040-pixel/aml-survival-prediction" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head"><h3>CDC FluSight Influenza Forecasting</h3><span class="when">Oct 2026 – present · <span class="live">ongoing</span></span></div>
+          <div class="result">trend model: −17% growth-phase error (WIS) vs baseline</div>
+          <p>Weekly probabilistic forecasts of state-level flu hospitalizations for the CDC FluSight 2026–27 challenge. Every submission passes the hub's automated validation.</p>
+          <ul>
+            <li>Baseline, damped-trend and mechanistic SIRS models (RK4 solver, weekly reproduction number), backtested on 2025–26 by epidemic phase.</li>
+            <li>The SIRS model matched the baseline overall with near-zero growth-phase bias and exposed systematic overshoot at peaks.</li>
+          </ul>
+          <div class="proj-foot">
+            <ul class="tags"><li>Python</li><li>ODE models</li><li>WIS</li></ul>
+            <a class="repo" href="https://github.com/bernardfrimpong040-pixel/flu-forecasting-sirs" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head"><h3>Airline Passenger Satisfaction</h3><span class="when">Kaggle Playground S6E10 · Oct 2026</span></div>
+          <div class="result">ROC AUC 0.95836 → 0.96056 over six rounds · CV within 0.0005 of leaderboard</div>
+          <p>Six documented rounds of feature engineering, fold-safe target encoding and hill-climbing model blends. A deliberate leakage demo showed leaky encoding inflating CV by 8× the real gain.</p>
+          <div class="proj-foot">
+            <ul class="tags"><li>LightGBM</li><li>XGBoost</li><li>CatBoost</li></ul>
+            <a class="repo" href="https://github.com/bernardfrimpong040-pixel/kaggle-airline-satisfaction" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="block" id="research">
+      <h2>Research</h2>
+      <div class="rows">
+        <div class="row">
+          <h3>Do influenza forecasts fail at turning points?</h3>
+          <p class="meta">In preparation · target: medRxiv preprint, then journal</p>
+          <p>A phase-stratified evaluation of the CDC FluSight models and ensemble, 2023–2026: how much worse they do near epidemic peaks, how late they detect the turn, and how far they overshoot.</p>
+        </div>
+        <div class="row">
+          <h3>Computational model of flow near permeable boundaries</h3>
+          <p class="meta">Master's thesis · University of Akron · 2025–2026</p>
+          <p>Numerical simulation of Stokes flow with the method of regularized Stokeslets, validated against analytical solutions with a study of accuracy and convergence.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="skills">
+      <h2>Toolkit</h2>
+      <div class="skills">
+        <div><h3>Programming &amp; data</h3><p>Python (pandas, NumPy, SciPy, Matplotlib), SQL (DuckDB), R, MATLAB, Git, LaTeX</p></div>
+        <div><h3>Machine learning</h3><p>scikit-learn, LightGBM, XGBoost, CatBoost; grouped and nested CV, target encoding, blending, permutation importance</p></div>
+        <div><h3>Statistics &amp; modeling</h3><p>Survival analysis, regression, hypothesis testing, time-series forecasting, SIRS/ODE models, numerical methods</p></div>
+        <div><h3>Credit &amp; reporting</h3><p>Vintage analysis, default and loss rates, HHI concentration limits, early warning indicators; Power BI (DAX), Excel</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="experience">
+      <h2>Experience</h2>
+      <div class="rows">
+        <div class="row"><h3>Mathematics Instructor</h3><p class="meta">T-Squared Honors Academy-North · Aug 2026 – present</p><p>Teach Algebra 1, Algebra 2 and Geometry; track assessment results to find learning gaps.</p></div>
+        <div class="row"><h3>Graduate Teaching Assistant</h3><p class="meta">University of Akron · 2024 – 2026</p><p>Recitations, grading and office hours for undergraduate calculus and statistics.</p></div>
+        <div class="row"><h3>Teaching Assistant</h3><p class="meta">KNUST, Kumasi, Ghana · 2022 – 2024</p><p>Tutorials and grading for undergraduate mathematics courses.</p></div>
+      </div>
+    </section>
+
+    <section class="block contact" id="contact">
+      <h2>Contact</h2>
+      <div>
+        <p>I'm looking for data analyst and credit analytics roles. If you'd like to talk about a role or one of these projects, email me.</p>
+        <div class="email-row">
+          <span class="email" id="email">bernardfrimpong614@gmail.com</span>
+          <button class="btn ghost" id="copy" type="button">Copy email</button>
+        </div>
+        <ul class="links">
+          <li><a href="https://www.linkedin.com/in/bernard-frimpong-681008222" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/bernardfrimpong040-pixel" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="Bernard_Frimpong_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>© 2026 Bernard Frimpong · Akron, Ohio</footer>
+  </div>
+</main>
+
+<script>
+  // Copy the email address to the clipboard; if that is blocked, select it instead.
+  document.getElementById("copy").addEventListener("click", function () {
+    var btn = this, text = document.getElementById("email").textContent;
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Selected, press Ctrl+C";
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = "Copied"; }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+</script>
+
+</body>
+</html>
