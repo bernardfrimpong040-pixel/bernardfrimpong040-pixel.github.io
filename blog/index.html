@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Writing · Bernard Frimpong</title>
+<meta name="description" content="Notes by Bernard Frimpong on data analysis, model validation, survival analysis and disease forecasting.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Bernard Frimpong</a>
+    <nav aria-label="Site"><ul>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="index.html" aria-current="page">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="eyebrow">Writing</p>
+    <h1>Notes from the projects</h1>
+    <p class="lede">Short write-ups of what I tried, what worked, and what the numbers really showed. Each post links to the code so you can check it.</p>
+  </div>
+
+  <!-- NEWEST POST GOES AT THE TOP. Copy one <li> ... </li> block to add a post. -->
+  <ul class="post-list">
+    <li>
+      <time datetime="2026-10-23">23 Oct 2026</time>
+      <div>
+        <h2><a href="posts/validate-on-unseen-hospital.html">Testing a survival model on a hospital it has never seen</a></h2>
+        <p>Why I split my cross-validation by hospital in the leukemia challenge, and what the C-index actually measures.</p>
+        <span class="tag">survival analysis · validation</span>
+      </div>
+    </li>
+    <li>
+      <time datetime="2026-10-20">20 Oct 2026</time>
+      <div>
+        <h2><a href="posts/target-encoding-leakage.html">How a leaky encoding made my CV score lie by 8×</a></h2>
+        <p>A deliberate experiment from a Kaggle competition: the same feature, encoded two ways, and why only one of them told the truth.</p>
+        <span class="tag">machine learning · Kaggle</span>
+      </div>
+    </li>
+  </ul>
+</main>
+
+<footer class="wrap">© 2026 Bernard Frimpong · <a href="../index.html">Home</a></footer>
+</body>
+</html>

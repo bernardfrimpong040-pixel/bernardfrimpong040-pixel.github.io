@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leaky Target Encoding · Bernard Frimpong</title>
+<meta name="description" content="A deliberate experiment showing how leaky target encoding inflated cross-validation by 8 times the real gain.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../blog.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Bernard Frimpong</a>
+    <nav aria-label="Site"><ul>
+      <li><a href="../../index.html#projects">Projects</a></li>
+      <li><a href="../index.html" aria-current="page">Writing</a></li>
+      <li><a href="../../index.html#contact">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article class="post">
+  <p class="eyebrow">Machine learning · Kaggle</p>
+  <h1>How a leaky encoding made my CV score lie by 8×</h1>
+  <p class="post-meta"><time datetime="2026-10-20">20 Oct 2026</time><span>5 min read</span></p>
+
+  <p class="result">Leaky encoding inflated the cross-validation gain by 8× the real gain on the leaderboard.</p>
+
+  <p>In the Kaggle Playground competition on airline passenger satisfaction, I improved my ROC AUC from 0.95836 to 0.96056 over six rounds. That is a small gain, so I needed to be sure each step was real and not noise. The tool I relied on was cross-validation (CV): if CV says a change helps, the leaderboard should agree.</p>
+  <p>It did agree. In every round, my CV score predicted the leaderboard to within 0.0005. This post is about the one technique that can quietly break that agreement, and the experiment I ran to see how badly.</p>
+
+  <h2>What target encoding is</h2>
+  <p>Models need numbers, but many useful columns are categories, like a travel class or a route. Target encoding replaces each category with the average of the target for that category. If 80% of business-class passengers were satisfied, every "Business" row gets the value 0.80.</p>
+  <p>This is powerful because it hands the model a summary of what each category means for the outcome. It is also dangerous for exactly the same reason.</p>
+
+  <h2>Where the leak comes from</h2>
+  <p>The leaky way is to compute those averages once, on the whole training set, and then run cross-validation. Each row's own label is now part of its own feature. When CV later "tests" on a fold, the rows in that fold already carry information about their answers. The model looks better than it is.</p>
+  <p>The problem is worst for rare categories. If a category appears only three times, its average is heavily shaped by each of those three labels, so the feature nearly gives the answer away.</p>
+
+  <h2>The fold-safe version</h2>
+  <p>The fix is to compute the encoding inside each fold, using only that fold's training rows. The validation rows are encoded with averages they did not help create, which is exactly the situation the model faces on the real test set.</p>
+<pre><code># For each CV fold: learn the averages on the training part only
+for train_idx, valid_idx in folds.split(X, y):
+    means = y.iloc[train_idx].groupby(X["route"].iloc[train_idx]).mean()
+    X_valid_enc = X["route"].iloc[valid_idx].map(means)   # no peeking</code></pre>
+  <p>I also smoothed the averages toward the overall mean, so a category seen only a few times does not get an extreme value.</p>
+
+  <h2>The experiment</h2>
+  <p>To measure the damage, I added the same encoded feature both ways and compared what CV promised with what the leaderboard delivered. The fold-safe version gave a CV gain that the leaderboard confirmed. The leaky version reported a gain about <strong>8 times larger</strong> than the improvement that actually showed up on unseen data.</p>
+  <p>If I had trusted the leaky number, I would have kept stacking features on a false signal and been surprised by the final ranking.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway</strong>
+    Any step that learns from the target (encoding, scaling with target information, feature selection) has to happen inside the CV loop. The test I use: CV should predict the leaderboard. When it stops doing that, look for a leak before celebrating.
+  </div>
+
+  <div class="post-foot">
+    <a href="../index.html">← All posts</a>
+    <a href="https://github.com/bernardfrimpong040-pixel/kaggle-airline-satisfaction" target="_blank" rel="noopener">Code on GitHub →</a>
+  </div>
+</article>
+</main>
+<footer class="wrap">© 2026 Bernard Frimpong · <a href="../../index.html">Home</a></footer>
+</body>
+</html>

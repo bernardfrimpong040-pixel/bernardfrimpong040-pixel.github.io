@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Validating on Unseen Hospitals · Bernard Frimpong</title>
+<meta name="description" content="Why I grouped cross-validation by hospital in a leukemia survival challenge, and what the IPCW C-index measures.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../blog.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Bernard Frimpong</a>
+    <nav aria-label="Site"><ul>
+      <li><a href="../../index.html#projects">Projects</a></li>
+      <li><a href="../index.html" aria-current="page">Writing</a></li>
+      <li><a href="../../index.html#contact">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article class="post">
+  <p class="eyebrow">Survival analysis · Validation</p>
+  <h1>Testing a survival model on a hospital it has never seen</h1>
+  <p class="post-meta"><time datetime="2026-10-23">23 Oct 2026</time><span>6 min read</span></p>
+
+  <p class="result">Centre-grouped CV: 0.725 ± 0.021 · Public leaderboard (new hospital): 0.754 · Clinical score IPSS-R: 0.671</p>
+
+  <p>In the QRT × Institut Gustave Roussy challenge, the goal is to predict how long patients with myeloid leukemia will survive, using their blood counts, karyotype (a text description of their chromosomes) and gene mutations. The twist is that the test patients come from a hospital that does not appear in the training data. A model that only works at familiar hospitals is not much use.</p>
+
+  <h2>What the score measures</h2>
+  <p>The challenge uses the concordance index, or C-index. Take two patients where we know who died first. If the model gave the higher risk score to the patient who died earlier, that pair counts as correct. The C-index is the share of such pairs the model gets right. A score of 0.5 is a coin flip; 1.0 is a perfect ranking.</p>
+  <p>Survival data has a complication: some patients are still alive when the study ends, so we do not know their full survival time. This is called censoring. The IPCW version of the C-index reweights pairs to correct for patients who leave the data early, so the score is not biased by who happened to be followed for longer. I derived both Kaplan–Meier and the IPCW C-index by hand and checked that my numbers matched the library's before trusting it.</p>
+
+  <h2>Why ordinary cross-validation would mislead</h2>
+  <p>Standard CV shuffles patients into random folds. Patients from the same hospital then sit on both sides of the split. Hospitals differ in their lab equipment, their patient mix and how they record data, so the model can learn hospital quirks and still look good on validation. That is a quiet form of leakage.</p>
+  <p>Instead, I grouped the folds by centre: every patient from a given hospital is either in training or in validation, never both. Each fold then asks the real question, "how well does this work at a hospital you have not seen?"</p>
+
+  <h2>Choosing models without fooling myself</h2>
+  <p>I compared penalized Cox regression, a random survival forest and an XGBoost survival model, then blended them. Tuning and choosing an ensemble on the same folds you report would inflate the score, so I used nested cross-validation: an inner loop made the choices and an outer loop only measured them, across 15 folds in total.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Measure</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>IPSS-R clinical risk score (baseline)</td><td class="num">0.671</td></tr>
+      <tr><td>Ensemble, centre-grouped nested CV</td><td class="num">0.725 ± 0.021</td></tr>
+      <tr><td>Folds where the ensemble beat the best single model</td><td class="num">15 of 15</td></tr>
+      <tr><td>Public leaderboard (unseen hospital)</td><td class="num">0.754</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Because the CV was strict, the leaderboard score came in above it rather than below, which is the direction you want. Permutation importance showed that mutation burden, the number of mutations a patient carries, was the strongest single predictor.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway</strong>
+    Split your validation the way the real world will split your data. If new data comes from a new hospital, branch, region or time period, your folds should be grouped the same way.
+  </div>
+
+  <div class="post-foot">
+    <a href="../index.html">← All posts</a>
+    <a href="https://github.com/bernardfrimpong040-pixel/aml-survival-prediction" target="_blank" rel="noopener">Code on GitHub →</a>
+  </div>
+</article>
+</main>
+<footer class="wrap">© 2026 Bernard Frimpong · <a href="../../index.html">Home</a></footer>
+</body>
+</html>

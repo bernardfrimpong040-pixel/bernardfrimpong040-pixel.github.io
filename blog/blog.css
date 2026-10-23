@@ -1,0 +1,65 @@
+/* Shared styles for the blog pages. Same colours and fonts as the home page. */
+:root{
+  --bg:#f5f7f6; --surface:#ffffff; --ink:#15212b; --muted:#56646e; --line:#d6dedc;
+  --accent:#0f6b63; --accent-soft:#dcefeb; --mark:#b5651d;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171c; --surface:#16222a; --ink:#e6eeec; --muted:#9aaab0; --line:#283841;
+  --accent:#4cc2b2; --accent-soft:#173a37; --mark:#e0a060; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171c; --surface:#16222a; --ink:#e6eeec; --muted:#9aaab0; --line:#283841;
+  --accent:#4cc2b2; --accent-soft:#173a37; --mark:#e0a060; color-scheme:dark}
+
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{background:var(--bg);color:var(--ink);font:400 1.04rem/1.75 var(--body);margin:0}
+img{max-width:100%}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrap{max-width:66rem;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+
+header.top{border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
+.brand{font:700 1rem var(--display);color:var(--ink);text-decoration:none}
+nav ul{display:flex;gap:1.1rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.88rem}
+nav a:hover,nav a[aria-current]{color:var(--accent)}
+
+.eyebrow{font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 .8rem}
+h1{font:700 clamp(2rem,5vw,3.1rem)/1.08 var(--display);letter-spacing:-.025em;margin:0 0 1rem;text-wrap:balance}
+.lede{font-size:1.12rem;color:var(--muted);margin:0}
+
+/* blog index */
+.intro{padding-block:3.5rem 2.2rem;max-width:42rem}
+.post-list{list-style:none;margin:0;padding:0 0 3rem;border-top:1px solid var(--line)}
+.post-list li{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1.5rem;padding-block:1.6rem;border-bottom:1px solid var(--line)}
+.post-list time{font:400 .8rem/1.9 var(--mono);color:var(--muted)}
+.post-list h2{font:700 1.3rem/1.25 var(--display);margin:0 0 .35rem;text-wrap:balance}
+.post-list h2 a{color:var(--ink);text-decoration:none}
+.post-list h2 a:hover{color:var(--accent)}
+.post-list p{margin:0;color:var(--muted)}
+.post-list .tag{font:400 .74rem var(--mono);color:var(--accent);margin-top:.5rem;display:block}
+@media (max-width:640px){.post-list li{grid-template-columns:1fr;gap:.2rem}}
+
+/* single post */
+article.post{max-width:42rem;margin:0 auto;padding-block:3.2rem 2rem}
+.post-meta{font:400 .8rem var(--mono);color:var(--muted);margin:0 0 2.2rem;display:flex;flex-wrap:wrap;gap:.3rem 1rem}
+article.post h2{font:700 1.4rem/1.25 var(--display);margin:2.4rem 0 .7rem;letter-spacing:-.01em}
+article.post p,article.post li{margin:0 0 1.05rem}
+article.post ul,article.post ol{padding-left:1.2rem;margin:0 0 1.1rem}
+code{font:400 .88em var(--mono);background:var(--accent-soft);padding:.1em .35em;border-radius:4px}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;overflow-x:auto;font:400 .86rem/1.6 var(--mono)}
+pre code{background:none;padding:0}
+.result{font:500 .9rem/1.5 var(--mono);color:var(--accent);background:var(--accent-soft);padding:.7rem .9rem;border-radius:6px;margin:0 0 1.4rem}
+.takeaway{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:1rem 1.2rem;margin:2rem 0}
+.takeaway strong{display:block;font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mark);margin-bottom:.3rem}
+.post-foot{border-top:1px solid var(--line);margin-top:2.5rem;padding-top:1.2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font-size:.92rem}
+.tablewrap{overflow-x:auto;margin:0 0 1.4rem}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:.5rem .7rem;border-bottom:1px solid var(--line)}
+th{font:500 .75rem var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
