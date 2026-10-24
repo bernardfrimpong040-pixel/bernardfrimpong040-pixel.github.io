@@ -6,6 +6,12 @@
 <title>Bernard Frimpong</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Bernard Frimpong, data analyst. Credit analytics, survival analysis, disease forecasting and machine learning projects.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bernard Frimpong · Data Analyst">
+<meta property="og:description" content="Credit analytics, survival analysis, disease forecasting and machine learning projects, all reproducible on GitHub.">
+<meta property="og:url" content="https://bernardfrimpong040-pixel.github.io/">
+<meta property="og:image" content="https://bernardfrimpong040-pixel.github.io/assets/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -52,10 +58,20 @@ h1{font:700 clamp(2.4rem,6vw,4rem)/1.02 var(--display);letter-spacing:-.03em;mar
 .btn.primary{background:var(--accent);color:var(--bg)}
 .btn.ghost{background:transparent;color:var(--accent)}
 .btn:hover{filter:brightness(1.08)}
+.portrait{margin:0;justify-self:end;max-width:20rem;width:100%}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:12px;box-shadow:12px 12px 0 var(--accent-soft)}
+.portrait figcaption{display:flex;align-items:center;gap:.5rem;font:500 .78rem var(--mono);color:var(--muted);margin-top:1rem}
+.dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.now-line{margin:1.4rem 0 0;font-size:.9rem}
+.now-line a{color:var(--muted);text-decoration:none}
+.now-line a:hover{color:var(--accent)}
+.now-line b{font:500 .72rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--bg);background:var(--mark);padding:.15rem .45rem;border-radius:4px;margin-right:.5rem}
+.proj-fig{margin:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+.proj-fig img{display:block;width:100%;height:auto}
 .km{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1rem 1rem .6rem}
 .km svg{width:100%;height:auto;display:block}
 .km figcaption{font:400 .74rem/1.4 var(--mono);color:var(--muted);margin-top:.4rem}
-@media (max-width:760px){.hero{grid-template-columns:1fr;padding-block:2.5rem 2rem;gap:1.8rem}}
+@media (max-width:760px){.portrait{justify-self:start;max-width:15rem}.hero{grid-template-columns:1fr;padding-block:2.5rem 2rem;gap:1.8rem}}
 
 /* figures strip */
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -121,6 +137,7 @@ footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
       <li><a href="#projects">Projects</a></li>
       <li class="opt"><a href="#research">Research</a></li>
       <li><a href="blog/index.html">Writing</a></li>
+      <li><a href="now.html">Now</a></li>
       <li class="opt"><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul></nav>
@@ -138,30 +155,11 @@ footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
           <a class="btn primary" href="#projects">See the projects</a>
           <a class="btn ghost" href="Bernard_Frimpong_CV.pdf" target="_blank" rel="noopener">Download CV</a>
         </div>
+        <p class="now-line"><a href="now.html"><b>Now</b> Submitting weekly CDC FluSight forecasts and drafting a paper on turning points →</a></p>
       </div>
-      <figure class="km" aria-label="Illustrative Kaplan–Meier survival curves for three risk groups">
-        <svg viewBox="0 0 320 200" role="img">
-          <g stroke="var(--line)" stroke-width="1">
-            <line x1="34" y1="20" x2="34" y2="170"/><line x1="34" y1="170" x2="310" y2="170"/>
-            <line x1="34" y1="95" x2="310" y2="95" stroke-dasharray="2 4"/>
-          </g>
-          <g font-family="JetBrains Mono, monospace" font-size="9" fill="var(--muted)">
-            <text x="28" y="23" text-anchor="end">1.0</text>
-            <text x="28" y="98" text-anchor="end">0.5</text>
-            <text x="28" y="173" text-anchor="end">0</text>
-            <text x="310" y="186" text-anchor="end">time (years)</text>
-            <text x="38" y="186">0</text>
-          </g>
-          <path class="curve" fill="none" stroke="var(--accent)" stroke-width="2" d="M34 20 H70 V26 H105 V31 H140 V38 H180 V42 H215 V47 H260 V50 H310"/>
-          <path class="curve" fill="none" stroke="var(--mark)" stroke-width="2" d="M34 20 H55 V34 H82 V47 H110 V60 H138 V74 H170 V86 H205 V95 H245 V103 H310"/>
-          <path class="curve" fill="none" stroke="var(--muted)" stroke-width="2" d="M34 20 H46 V44 H64 V68 H86 V92 H108 V112 H134 V128 H170 V139 H220 V146 H310"/>
-          <g font-family="JetBrains Mono, monospace" font-size="9">
-            <text x="264" y="45" fill="var(--accent)">low</text>
-            <text x="252" y="98" fill="var(--mark)">mid</text>
-            <text x="252" y="141" fill="var(--muted)">high</text>
-          </g>
-        </svg>
-        <figcaption>Survival by risk group, the kind of curve behind my leukemia model (illustrative).</figcaption>
+      <figure class="portrait">
+        <img src="assets/bernard.jpg" alt="Bernard Frimpong" width="640" height="800">
+        <figcaption><span class="dot" aria-hidden="true"></span>Open to data analyst roles</figcaption>
       </figure>
     </div>
 
@@ -187,6 +185,7 @@ footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
         <article class="proj">
           <div class="proj-head"><h3>Commercial Credit Portfolio Analysis</h3><span class="when">2026</span></div>
           <div class="result">loans approved 2005–08 → 21% of dollars, 54% of losses</div>
+          <figure class="proj-fig"><img src="assets/charts/credit-vintage-losses.png" alt="Share of loan dollars vs. share of losses by approval year" loading="lazy" onerror="this.parentNode.hidden=true"></figure>
           <p>A bank-style review of 882,533 SBA small-business loans ($170B approved), built in SQL and Python and delivered as an Excel limit monitor, a Power BI dashboard and an executive summary.</p>
           <ul>
             <li>An early warning indicator from 2-year default rates flagged the 2010 loss peak three years ahead, two years before the unemployment rate did.</li>
@@ -201,6 +200,7 @@ footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
         <article class="proj">
           <div class="proj-head"><h3>Leukemia Overall Survival Prediction</h3><span class="when">Oct 2026</span></div>
           <div class="result">IPCW C-index 0.754 on an unseen hospital · clinical score IPSS-R 0.671</div>
+          <figure class="proj-fig"><img src="assets/charts/aml-km-risk-groups.png" alt="Kaplan–Meier survival curves by predicted risk group" loading="lazy" onerror="this.parentNode.hidden=true"></figure>
           <p>QRT × Institut Gustave Roussy challenge (Challenge Data, ENS Paris): predicting survival of myeloid leukemia patients from blood counts, karyotype text and gene mutations.</p>
           <ul>
             <li>91 engineered features, including a parser for free-text karyotypes; penalized Cox, random survival forest and XGBoost-Cox models.</li>
@@ -216,6 +216,7 @@ footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
         <article class="proj">
           <div class="proj-head"><h3>CDC FluSight Influenza Forecasting</h3><span class="when">Oct 2026 – present · <span class="live">ongoing</span></span></div>
           <div class="result">trend model: −17% growth-phase error (WIS) vs baseline</div>
+          <figure class="proj-fig"><img src="assets/charts/flusight-forecast.png" alt="Forecast intervals vs. reported flu hospitalizations" loading="lazy" onerror="this.parentNode.hidden=true"></figure>
           <p>Weekly probabilistic forecasts of state-level flu hospitalizations for the CDC FluSight 2026–27 challenge. Every submission passes the hub's automated validation.</p>
           <ul>
             <li>Baseline, damped-trend and mechanistic SIRS models (RK4 solver, weekly reproduction number), backtested on 2025–26 by epidemic phase.</li>
@@ -230,6 +231,7 @@ footer{padding-block:2rem;color:var(--muted);font-size:.82rem}
         <article class="proj">
           <div class="proj-head"><h3>Airline Passenger Satisfaction</h3><span class="when">Kaggle Playground S6E10 · Oct 2026</span></div>
           <div class="result">ROC AUC 0.95836 → 0.96056 over six rounds · CV within 0.0005 of leaderboard</div>
+          <figure class="proj-fig"><img src="assets/charts/kaggle-auc-rounds.png" alt="Cross-validation and leaderboard AUC across six rounds" loading="lazy" onerror="this.parentNode.hidden=true"></figure>
           <p>Six documented rounds of feature engineering, fold-safe target encoding and hill-climbing model blends. A deliberate leakage demo showed leaky encoding inflating CV by 8× the real gain.</p>
           <div class="proj-foot">
             <ul class="tags"><li>LightGBM</li><li>XGBoost</li><li>CatBoost</li></ul>

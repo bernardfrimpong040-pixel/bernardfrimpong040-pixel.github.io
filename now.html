@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+  NOW PAGE: update this whenever your focus changes (every week or two is plenty).
+  1. Change the "Updated" date (both the datetime="" and the visible text).
+  2. Edit the bullet points. Keep each to one or two lines.
+  3. Update the one-line "Now" text in index.html to match the first item.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Now · Bernard Frimpong</title>
+<meta name="description" content="What Bernard Frimpong is working on right now.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="blog/blog.css">
+<style>
+  .now-group{border-top:1px solid var(--line);padding-block:1.6rem;display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1.5rem}
+  .now-group h2{font:500 .75rem/1.9 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0}
+  .now-group ul{margin:0;padding-left:1.1rem}
+  .now-group li{margin:0 0 .6rem}
+  .now-group li:last-child{margin-bottom:0}
+  @media (max-width:640px){.now-group{grid-template-columns:1fr;gap:.4rem}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Bernard Frimpong</a>
+    <nav aria-label="Site"><ul>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="blog/index.html">Writing</a></li>
+      <li><a href="now.html" aria-current="page">Now</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main class="wrap" style="max-width:48rem">
+  <div class="intro">
+    <p class="eyebrow">Now</p>
+    <h1>What I'm working on</h1>
+    <p class="lede">Updated <time datetime="2026-10-23">23 October 2026</time> · Akron, Ohio</p>
+  </div>
+
+  <section class="now-group">
+    <h2>Forecasting</h2>
+    <ul>
+      <li>Submitting weekly flu hospitalization forecasts to the CDC FluSight 2026–27 challenge.</li>
+      <li>Drafting a paper on whether FluSight models fail at epidemic turning points, aiming for a medRxiv preprint.</li>
+    </ul>
+  </section>
+
+  <section class="now-group">
+    <h2>Competitions</h2>
+    <ul>
+      <li>Wrapped up the leukemia survival challenge (0.754 IPCW C-index on an unseen hospital) and its 33-page write-up.</li>
+      <li>Competing in the IEEE Big Data Cup TrafficFlowBench challenge on Kaggle.</li>
+    </ul>
+  </section>
+
+  <section class="now-group">
+    <h2>Career</h2>
+    <ul>
+      <li>Looking for data analyst and credit analytics roles.</li>
+      <li>Teaching Algebra and Geometry at T-Squared Honors Academy in the meantime.</li>
+    </ul>
+  </section>
+
+  <section class="now-group">
+    <h2>Learning</h2>
+    <ul>
+      <li>Probabilistic forecast scoring (weighted interval score) and how forecast hubs evaluate models.</li>
+    </ul>
+  </section>
+
+  <p style="color:var(--muted);font-size:.9rem;padding-block:1.5rem 3rem;border-top:1px solid var(--line);margin:0">This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>: a snapshot of my current focus, updated as it changes.</p>
+</main>
+
+<footer class="wrap">© 2026 Bernard Frimpong · <a href="index.html">Home</a></footer>
+</body>
+</html>

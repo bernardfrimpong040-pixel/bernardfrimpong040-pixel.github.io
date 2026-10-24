@@ -10,6 +10,10 @@ Live site: https://bernardfrimpong040-pixel.github.io
 |---|---|
 | `index.html` | The whole website in one file (HTML + CSS + a few lines of JavaScript). No build step. |
 | `Bernard_Frimpong_CV.pdf` | My CV, linked from the "Download CV" button. |
+| `now.html` | The "Now" page: what I'm working on this week. |
+| `assets/bernard.jpg` | Headshot used on the home page. |
+| `assets/og-card.jpg` | Preview image shown when the site link is shared on LinkedIn and elsewhere. |
+| `assets/charts/` | Project charts (PNG). Each project card shows its chart once the file exists here. |
 | `blog/index.html` | The list of all blog posts. |
 | `blog/blog.css` | Shared styles for the blog pages (same colours and fonts as the home page). |
 | `blog/posts/*.html` | One file per post. |
@@ -29,6 +33,21 @@ Every `git push` updates the live site within a minute or two.
 2. Each section is marked with its id: `about`, `projects`, `research`, `writing`, `skills`, `experience`, `contact`.
 3. To add a project, copy one `<article class="proj"> ... </article>` block, paste it below the others, and change the text and GitHub link.
 4. Preview locally by double-clicking `index.html`, then commit and push.
+
+## How to update the Now page
+
+Open `now.html`, change the date and the bullet points, and update the one-line "Now" text in `index.html`. Every week or two is plenty.
+
+## How to add a project chart
+
+Save a PNG with the exact file name below into `assets/charts/`. Until a file exists, its card simply shows no chart.
+
+| Project | File name |
+|---|---|
+| Credit portfolio | `credit-vintage-losses.png` |
+| Leukemia survival | `aml-km-risk-groups.png` |
+| FluSight | `flusight-forecast.png` |
+| Kaggle airline | `kaggle-auc-rounds.png` |
 
 ## How to write a new blog post
 
